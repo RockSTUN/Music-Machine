@@ -9,19 +9,53 @@ import Box from './Box'
 //Harmony
 //Melody
 
-// const INITIAL_STATE= {
-//     chords: []
-// }
+const INITIAL_STATE= {
+    disp: ''
+}
 
-// //Reducer
-// function reducer(state=INITIAL_STATE, action){
-//         
-// };
+function changeDisplay(soundName){
+    
+    return {
+        type: 'CHANGE_DISPLAY',
+        newDisplay: soundName
+    }
+}
+
+
+//Reducer
+function reducer(state=INITIAL_STATE, action){
+    
+    switch(action.type){
+        case 'CHANGE_DISPLAY':
+            return {disp: action.newDisplay};
+        default:
+            return state
+    }
+};
+
+//MAPSTATETOPROPS
+function mapStateToProps(state){
+    
+    return {
+        disp: state.disp
+    }
+};
+//MAPDISPATCHTOPROPS
+function mapDispatchToProps(dispatch){
+    return {
+        
+        dispatchDisplay: soundName =>  {  dispatch(changeDisplay(soundName))}
+    }
+};
 //Redux:
 //Store:
-// const store = createStore(reducer)
-// 
+const store = createStore(reducer);
 
+//Connect
+const BoxConnected = connect(mapStateToProps,mapDispatchToProps)(Box)
+
+console.dir('STORE: ',store)
+console.dir('STORE GETSTATE: ',store.getState())
 
 //Wraper
 class Warper extends React.Component {
@@ -32,9 +66,9 @@ class Warper extends React.Component {
     
     
     render(){
-        return <div id='warper'>
-           <Box />
-        </div>
+        return <Provider store={store}>
+           <BoxConnected />
+        </Provider>
     };
     
 };

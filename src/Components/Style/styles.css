@@ -185,3 +185,9 @@ body {
 [type='range']:focus::-ms-fill-upper {
   background: #4f4f4f;
 }
+
+.tempoHolder ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+  font-family: 'myFont', Arial, Helvetica, sans-serif;/* Firefox */
+  color: 'red';
+    
+}

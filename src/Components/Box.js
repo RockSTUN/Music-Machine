@@ -1,6 +1,7 @@
 import React from 'react';
-import Audios from './audios';
+import { Audios } from './audios';
 import $ from 'jquery';
+import 'jquery-ui/ui/effect';
 class Box extends React.Component {
     constructor(props){
         super(props);
@@ -11,6 +12,7 @@ class Box extends React.Component {
 
     handleTime(element){
         const audio = document.getElementById(element)
+        $(audio.parentElement).animate({opacity: 0},25, function () {$(this).animate({opacity: 1},this.lastChild.duration*1000/2);})
         if (audio.ended == false){
             audio.currentTime = 0;
             audio.play();
@@ -66,40 +68,41 @@ class Box extends React.Component {
     
     render(){
         return <div className={'container-fluid'} id={"drum-machine"}>
+        <h3>{'Live Drum'}</h3>
             <div className={'row'}>
-                <div className={'col-xl'}>
-                    <button onClick={() => this.handleTime('Q')} id='Open Hi Hat' className={'btn btn-primary drum-pad'}>{'Q'}
+                <div className={'col-xs'}>
+                    <button onClick={() => this.handleTime('Q')} id='Open Hi Hat' className={'btn btn-dark drum-pad'}>{'Q'}
                         <audio id ={'Q'} className={'clip'} src={Audios.openHiHat.src}>
                         </audio>
                     </button>
-                    <button onClick={() => this.handleTime('W')} id='Pedal Hi Hat' className={'btn btn-primary drum-pad'}>{'W'}
+                    <button onClick={() => this.handleTime('W')} id='Pedal Hi Hat' className={'btn btn-dark drum-pad'}>{'W'}
                         <audio id ={'W'} className={'clip'} src={Audios.pedalHiHat.src}></audio>
                     </button>
-                    <button onClick={() => this.handleTime('E')} id='Closed Hat' className={'btn btn-primary drum-pad'}>{'E'}
+                    <button onClick={() => this.handleTime('E')} id='Closed Hat' className={'btn btn-dark drum-pad'}>{'E'}
                         <audio id ={'E'} className={'clip'} src={Audios.closedHat.src}></audio>
                     </button>
                 </div>
                 
-                <div className={'col-xl'}>
-                    <button onClick={() => this.handleTime('A')} id='Hi Tom' className={'btn btn-primary drum-pad'}>{'A'}
+                <div className={'col-xs'}>
+                    <button onClick={() => this.handleTime('A')} id='Hi Tom' className={'btn btn-dark drum-pad'}>{'A'}
                         <audio id ={'A'} className={'clip'} src={Audios.hiTom.src}></audio>
                     </button>
-                    <button onClick={() => this.handleTime('S')} id='Mid Tom' className={'btn btn-primary drum-pad'}>{'S'}
+                    <button onClick={() => this.handleTime('S')} id='Mid Tom' className={'btn btn-dark drum-pad'}>{'S'}
                         <audio id ={'S'} className={'clip'} src={Audios.midTom.src}></audio>
                     </button>
-                    <button onClick={() => this.handleTime('D')} id='Low Tom' className={'btn btn-primary drum-pad'}>{'D'}
+                    <button onClick={() => this.handleTime('D')} id='Low Tom' className={'btn btn-dark drum-pad'}>{'D'}
                         <audio id ={'D'} className={'clip'} src={Audios.lowTom.src}></audio>
                     </button>
                 </div>
                 
-                <div className={'col-xl'}>
-                    <button onClick={() => this.handleTime('Z')} id='Kick' className={'btn btn-primary drum-pad'}>{'Z'}
+                <div className={'col-xs'}>
+                    <button onClick={() => this.handleTime('Z')} id='Kick' className={'btn btn-dark drum-pad'}>{'Z'}
                         <audio id ={'Z'} className={'clip'} src={Audios.kick.src}></audio>
                     </button>
-                    <button onClick={() => this.handleTime('X')} id='Snare' className={'btn btn-primary drum-pad'}>{'X'}
+                    <button onClick={() => this.handleTime('X')} id='Snare' className={'btn btn-dark drum-pad'}>{'X'}
                         <audio id ={'X'} className={'clip'} src={Audios.snare.src}></audio>
                     </button>
-                    <button onClick={() => this.handleTime('C')} id='Clap' className={'btn btn-primary drum-pad'}>{'C'}
+                    <button onClick={() => this.handleTime('C')} id='Clap' className={'btn btn-dark drum-pad'}>{'C'}
                         <audio id ={'C'} className={'clip'} src={Audios.clap.src}></audio>
                     </button>
                 </div>

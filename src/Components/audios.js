@@ -14,6 +14,13 @@ import crash from './Drums/crash.mp3';
 import clav from './Drums/clav.mp3';
 import closedHat from './Drums/closedHat.mp3';
 import clap from './Drums/clap.mp3';
+import C from './Notes/C.mp3';
+import D from './Notes/D.mp3';
+import E from './Notes/E.mp3';
+import F from './Notes/F.mp3';
+import G from './Notes/G.mp3';
+import A from './Notes/A.mp3';
+import B from './Notes/B.mp3';
 
 const Audios = {
     tamborine : new Audio(tamborine),
@@ -34,6 +41,47 @@ const Audios = {
     clap: new Audio(clap)
 }
 
+let majorKeys = {
+    C: ['C','D','E','F','G','A','B']
+};
+let Sharps = [];
+function getSharp(inp){
+    let scale = [...inp]
+    for (let i=0;i<5;i++){
+    
+       let aux = scale.splice(4);
+        scale[scale.length-1] += '#'; 
+        
+        aux = aux.concat(scale);
+        majorKeys[aux[0]] = aux;
+        scale = [...aux]
+    
+    }
+}
+function getFlat(inp){
+    let scale = [...inp]
+    for (let i=0;i<6;i++){
+    
+        scale[scale.length-1] += 'b';
+       let aux = scale.splice(3); 
+        
+        aux = aux.concat(scale);
+        majorKeys[aux[0]] = aux;
+        scale = [...aux]
+    
+    }
+}
 
+getSharp(majorKeys.C)
+getFlat(majorKeys.C)
 
-export default Audios;
+const noteSound = {
+    C: new Audio(C),
+    D: new Audio(D),
+    E: new Audio(E),
+    F: new Audio(F),
+    G: new Audio(G),
+    A: new Audio(A),
+    B: new Audio(B)
+}
+export { Audios, majorKeys, noteSound };

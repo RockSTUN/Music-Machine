@@ -1,0 +1,14 @@
+@keyframe tick {
+    50% {
+      background-color : 'yellow';  
+    }
+    100%{
+        background-color: 'red'
+    }
+}
+
+.metronome {
+    background-color: 'green';
+    animation-name: 'tick';
+    animation-duration: '1s'
+}
